@@ -23,6 +23,11 @@ scraped_collection = db["scrapedurls"]
 
 rf_blend, xgb_blend, meta_model = joblib.load("./models/phishing_blending.pkl")
 
+@app.route("/")
+def home():
+    return "Flask API is running!"
+
+
 def check_database(url):
 
     cached_result = cached_collection.find_one({"url": url})
