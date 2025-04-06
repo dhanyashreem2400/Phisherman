@@ -3,8 +3,8 @@ services:
     name: flask-api
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn main:main  
+    startCommand: gunicorn main:app  
     envVars:
       - key: SOME_API_KEY
-        value: your_flask_api_key_if_any
-    rootDir: flask-api  # folder where your Flask app lives
+        value: https://phisherman-974c.onrender.com/
+    rootDir: flask-api  
