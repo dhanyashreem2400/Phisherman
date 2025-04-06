@@ -18,7 +18,7 @@ app.use(cors({
 
 // ✅ Also allow fetch() requests via CSP
 app.use((req, res, next) => {
-  res.setHeader("Content-Security-Policy", "connect-src 'self' http://localhost:5000 http://localhost:5001");
+  res.setHeader("Content-Security-Policy", "connect-src 'self' http://localhost:5000 http://localhost:5001 https://phisherman-974c.onrender.com");
   next();
 });
 
@@ -116,7 +116,7 @@ app.post("/check-url", async (req, res) => {
       }
 
       // 🔍 Query ML model if not found
-      const mlResponse = await axios.post("http://localhost:5001/predict", { url });
+      const mlResponse = await axios.post("https://phisherman-974c.onrender.com/predict", { url });
 
       const { isPhishing, probability } = mlResponse.data;
 
