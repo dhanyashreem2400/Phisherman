@@ -5,24 +5,22 @@ import cors from "cors";
 import dotenv from "dotenv";
 import axios from "axios"; 
 
-dotenv.config({ path: '../.env' }); // Adjust the path based on where your JS file is
+dotenv.config({ path: '../.env' }); 
 
 
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: "*", // Allow all origins (Change for production!)
+  origin: "*", 
   methods: "GET,POST",
   allowedHeaders: "Content-Type"
 }));
 
-// ✅ Also allow fetch() requests via CSP
 app.use((req, res, next) => {
   res.setHeader("Content-Security-Policy", "connect-src 'self' http://localhost:5000 http://localhost:5001 https://phisherman-974c.onrender.com");
   next();
 });
 
-// MongoDB Connection
 const mongoURI = process.env.MONGO_URI;
 
 
@@ -115,14 +113,12 @@ app.post("/check-url", async (req, res) => {
           });
       }
 
-      // 🔍 Query ML model if not found
       const mlResponse = await axios.post("https://phisherman-974c.onrender.com/predict", { url });
 
       const { isPhishing, probability } = mlResponse.data;
 
       res.json({ source: "ml-response", isPhishing, probability });
 
-      // 🔥 Ensure URL is not already cached before storing
       const existingEntry = await CachedURL.exists({ url });
 
       if (!existingEntry && isPhishing === true) {
@@ -137,7 +133,6 @@ app.post("/check-url", async (req, res) => {
 });
 
 
-// Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on ${PORT}`);
