@@ -2,10 +2,8 @@ chrome.runtime.onMessage.addListener((message) => {
     if (message.action === "showWarning") {
         console.log("🚨 Phishing alert received!");
 
-        // Prevent duplicate alerts
         if (document.getElementById("phishing-alert")) return;
 
-        // ✅ Create a full-screen overlay warning
         const overlay = document.createElement("div");
         overlay.id = "phishing-alert";
         overlay.style.position = "fixed";
@@ -19,7 +17,6 @@ chrome.runtime.onMessage.addListener((message) => {
         overlay.style.alignItems = "center";
         overlay.style.zIndex = "9999";
 
-        // ✅ Create warning popup
         const popup = document.createElement("div");
         popup.style.background = "#ff3b30";
         popup.style.color = "#fff";
@@ -39,7 +36,6 @@ chrome.runtime.onMessage.addListener((message) => {
         overlay.appendChild(popup);
         document.body.appendChild(overlay);
 
-        // ✅ Close the warning when the button is clicked
         document.getElementById("closeWarning").addEventListener("click", () => {
             overlay.remove();
         });
