@@ -1,47 +1,7 @@
-// chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-//     if (changeInfo.status === "complete" && tab.url) {
-//         console.log("🔍 Checking URL:", tab.url);
-
-//         // Check cached results first
-//         chrome.storage.local.get([tab.url], (result) => {
-//             if (result[tab.url]) {
-//                 console.log("📌 Cached Result:", result[tab.url]);
-//                 if (result[tab.url].isPhishing === true) {
-//                     sendWarningMessage(tabId);
-//                 }
-//                 return;
-//             }
-
-//             // ✅ Fetch URL analysis from backend
-//             fetch("http://localhost:5000/check-url", {
-//                 method: "POST",
-//                 headers: { "Content-Type": "application/json" },
-//                 body: JSON.stringify({ url: tab.url })
-//             })
-//             .then(response => response.json())
-//             .then(data => {
-//                 console.log("🎯 Prediction:", data);
-
-//                 // Store result in cache
-//                 chrome.storage.local.set({ [tab.url]: data });
-
-//                 // ✅ Only send warning if phishing
-//                 if (data.isPhishing === true) {
-//                     sendWarningMessage(tabId);
-//                 }
-//             })
-//             .catch(error => console.error("❌ Error:", error));
-//         });
-//     }
-// });
-
-//https://mail.go889w2983928392oo9710.0.0299gle.com/#inbox
-
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (changeInfo.status === "complete" && tab.url) {
-        // 🛑 Ignore non-http(s) protocols like chrome://, file://, etc.
         if (!tab.url.startsWith("http")) {
-            console.warn("🚫 Ignoring non-http(s) URL:", tab.url);
+            console.warn(" Ignoring non-http(s) URL:", tab.url);
             return;
         }
 
@@ -54,7 +14,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         })
         .then(response => response.json())
         .then(data => {
-            console.log("🎯 Prediction:", data);
+            console.log(" Prediction:", data);
             if (data.isPhishing == true || data.isPhishing === "true") {
                 
                 // Inject warning script only if the page is fully loaded and valid
