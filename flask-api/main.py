@@ -37,7 +37,7 @@ def check_database(url):
     return cached_result or scraped_result 
 
 
-@app.route("/predict", methods=["post"])
+@app.route("/predict", methods=["POST"])
 def predict():
     data = request.json
     url = data.get("url")
@@ -48,7 +48,6 @@ def predict():
     db_result = check_database(url)
 
     if db_result:
-        # If URL exists in DB, return the stored result
         return jsonify({
             "source": "cached",
             "url": url,
