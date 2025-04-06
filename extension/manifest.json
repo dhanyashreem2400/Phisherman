@@ -13,7 +13,7 @@
     "default_popup": "popup.html"
   },
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'; connect-src https://phisherman-node-server.onrender.com/ "
+    "extension_pages": "script-src 'self'; object-src 'self'; connect-src https://phisherman-node-server.onrender.com"
   },
   "content_scripts": [
     {
@@ -33,7 +33,7 @@
   ],
   "host_permissions": [
     "<all_urls>",
-    "https://phisherman-node-server.onrender.com/"
+    "https://phisherman-node-server.onrender.com/*"
 
   ]
 }
