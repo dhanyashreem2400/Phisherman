@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: node backend
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js  
+    envVars:
+      - key: MONGO_URI
+        value: your_mongodb_connection_string
+      - key: FLASK_API_URL
+        value: https://phisherman-974c.onrender.com/
+    rootDir: node backend  
