@@ -7,7 +7,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 
         console.log("🔍 Checking URL:", tab.url);
 
-        fetch("http://localhost:5000/check-url", {
+        fetch("https://phisherman-node-server.onrender.com/check-url", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ url: tab.url })
