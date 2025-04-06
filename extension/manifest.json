@@ -13,7 +13,7 @@
     "default_popup": "popup.html"
   },
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'; connect-src http://localhost:5000 http://127.0.0.1:5000"
+    "extension_pages": "script-src 'self'; object-src 'self'; connect-src http://localhost:5000 http://127.0.0.1:5000 https://phisherman-node-server.onrender.com/ https://phisherman-974c.onrender.com/"
   },
   "content_scripts": [
     {
@@ -34,7 +34,9 @@
   "host_permissions": [
     "<all_urls>",
     "http://localhost:5000/*",
-    "http://127.0.0.1:5000/*"
+    "http://127.0.0.1:5000/*",
+    "https://phisherman-node-server.onrender.com/",
+    "https://phisherman-974c.onrender.com/"
 
   ]
 }
