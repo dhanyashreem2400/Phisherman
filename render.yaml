@@ -1,17 +1,5 @@
 services:
   - type: web
-    name: node backend
-    env: node
-    buildCommand: npm install
-    startCommand: node server.js  
-    envVars:
-      - key: MONGO_URI
-        value: your_mongodb_connection_string
-      - key: FLASK_API_URL
-        value: https://your-flask-api.onrender.com  # used to call your ML service
-    rootDir: node backend  # folder where your Node.js backend lives
-
-  - type: web
     name: flask-api
     env: python
     buildCommand: pip install -r requirements.txt
