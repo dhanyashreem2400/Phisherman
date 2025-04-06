@@ -38,7 +38,6 @@ const scrapedDB = mongoose.createConnection(mongoURI, {
   useUnifiedTopology: true,
 });
 
-// Ensure DB is connected
 async function connectDB() {
     try {
       await cachedDB.asPromise();
@@ -50,7 +49,6 @@ async function connectDB() {
 }
 connectDB();
 
-// Define Schemas
 const CachedURLSchema = new mongoose.Schema({
   url: { type: String, required: true, unique: true },
   isPhishing: { type: Boolean, required: true },  
@@ -66,6 +64,11 @@ const ScrapedURLSchema = new mongoose.Schema({
 // Models
 const CachedURL = cachedDB.model("cachedurls", CachedURLSchema);
 const ScrapedURL = scrapedDB.model("scrapedurls", ScrapedURLSchema);
+
+
+app.get("/", (req, res) => {
+  res.send(" Node backend is live!");
+});
 
 app.post("/add-url", async (req, res) => {
   try {
@@ -135,5 +138,5 @@ app.post("/check-url", async (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on ${PORT}`);
+  console.log(`Server running on ${PORT}`);
 });
