@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         statusElement.textContent = "🔍 Checking URL...";
 
-        fetch("https://phisherman-974c.onrender.com/check-url", {
+        fetch("http://localhost:5000/check-url", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ url: currentURL }),
