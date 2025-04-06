@@ -21,7 +21,7 @@ cached_collection = db["cachedurls"]
 scraped_collection = db["scrapedurls"] 
 
 
-rf_blend, xgb_blend, meta_model = joblib.load("phishing_detection_with_api/flask-api/models/phishing_blending.pkl")
+rf_blend, xgb_blend, meta_model = joblib.load("./models/phishing_blending.pkl")
 
 def check_database(url):
 
